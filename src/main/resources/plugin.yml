@@ -1,0 +1,6 @@
+name: NexoWaterCrops
+version: '${version}'
+main: de.mcterranova.nexowatercrops.NexoWaterCrops
+api-version: '26.3'
+depend: [Nexo]
+description: Nexo furniture crops that stand in water with a real block outline.
