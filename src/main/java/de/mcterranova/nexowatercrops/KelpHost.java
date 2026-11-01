@@ -36,13 +36,8 @@ final class KelpHost implements CropHost {
 
     @Override
     public boolean canPlant(Block block, WaterCropMechanic crop) {
-        return canStand(block) && !isWater(block.getRelative(BlockFace.UP))
+        return isSource(block) && age(0).isSupported(block) && !isWater(block.getRelative(BlockFace.UP))
                 && crop.ground().contains(block.getRelative(BlockFace.DOWN).getType());
-    }
-
-    @Override
-    public boolean canStand(Block block) {
-        return isSource(block) && age(0).isSupported(block);
     }
 
     static BlockData age(int age) {

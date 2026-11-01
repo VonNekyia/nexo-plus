@@ -30,12 +30,9 @@ public class NexoWaterCrops extends JavaPlugin {
         KelpGuard guard = new KelpGuard(crops, this);
         plugins.registerEvents(guard, this);
         plugins.registerEvents(new CropListener(crops, this), this);
-        RiceMigration migration = new RiceMigration(crops, this);
-        plugins.registerEvents(migration, this);
         getServer().getScheduler().runTaskTimer(this, new GrowthTask(crops), 20, 20);
         for (World world : getServer().getWorlds()) {
             for (Chunk chunk : world.getLoadedChunks()) guard.loaded(chunk);
-            migration.convertLoaded(world);
         }
     }
 }

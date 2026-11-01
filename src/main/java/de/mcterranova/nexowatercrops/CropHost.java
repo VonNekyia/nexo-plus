@@ -15,7 +15,4 @@ interface CropHost {
 
     /** Whether the crop may be planted here. */
     boolean canPlant(Block block, WaterCropMechanic crop);
-
-    /** Whether a crop can stand here at all, whatever its rules for planting. */
-    boolean canStand(Block block);
 }

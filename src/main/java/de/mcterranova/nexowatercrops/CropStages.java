@@ -10,13 +10,10 @@ record CropStages(int growing, int ripe) {
         return look >= growing;
     }
 
-    /** The look of a stage in this chain; every stage from {@code growing} on is the chain's ripe look. */
-    int look(int stage, int chain) {
-        return stage < growing ? stage : growing + chain % ripe;
-    }
-
     /** The look {@code steps} stages on in this chain, at most ripe. */
     int grown(int look, int steps, int chain) {
-        return isRipe(look) ? look : look(look + steps, chain);
+        if (isRipe(look)) return look;
+        int stage = look + steps;
+        return stage < growing ? stage : growing + chain % ripe;
     }
 }
