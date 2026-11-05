@@ -1,0 +1,6 @@
+name: NexoCoreProtect
+version: '${version}'
+main: de.mcterranova.nexocoreprotect.NexoCoreProtect
+api-version: '26.3'
+depend: [Nexo, CoreProtect]
+description: Logs Nexo furniture in CoreProtect.

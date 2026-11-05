@@ -1,0 +1,49 @@
+plugins {
+    id 'java'
+}
+
+group = 'de.mcterranova'
+version = '1.0.0'
+description = 'Logs Nexo furniture in CoreProtect.'
+
+ext {
+    paperVersion = '26.3.build.222-stable'
+    nexoVersion = '1.29.1'
+}
+
+java {
+    toolchain.languageVersion = JavaLanguageVersion.of(25)
+}
+
+repositories {
+    mavenCentral()
+    maven {
+        name = "papermc-repo"
+        url = "https://repo.papermc.io/repository/maven-public/"
+    }
+    maven {
+        name = "Nexo"
+        url = "https://repo.nexomc.com/releases"
+    }
+}
+
+dependencies {
+    compileOnly("io.papermc.paper:paper-api:${paperVersion}")
+    compileOnly("com.nexomc:nexo:${nexoVersion}")
+    // the jar from the server: the addon uses CoreProtect's internal queue, which only this exact version is known to have
+    compileOnly files('libs/CoreProtect-25.1.jar')
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.release.set(25)
+}
+
+processResources {
+    def props = [version: version]
+    inputs.properties props
+    filteringCharset 'UTF-8'
+    filesMatching('plugin.yml') {
+        expand props
+    }
+}
